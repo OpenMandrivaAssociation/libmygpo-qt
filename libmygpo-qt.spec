@@ -54,11 +54,11 @@ This package contains files need to build applications using libmygpo-qt.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std -C build
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -n %libname
 %defattr(-,root,root)
