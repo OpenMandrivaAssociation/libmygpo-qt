@@ -1,12 +1,13 @@
 Summary: Qt Library that wraps the gpodder.net Web API
 Name: libmygpo-qt
-Version: 1.0.1
-Release: %mkrel 2
+Version: 1.0.5
+Release: 1
 Source0: http://stefan.derkits.at/files/%{name}/%{name}.%{version}.tar.gz
+Patch0:	       libmygpo-qt-1.0.5-LIB_SUFFIX.patch
 License: LGPLv3+
 Group: Development/KDE and Qt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Url: https://github.com/ase23/libmygpo-qt
+Url: http://wiki.gpodder.org/wiki/Libmygpo-qt
 BuildRequires: cmake
 BuildRequires: qt4-devel
 BuildRequires: qjson-devel
@@ -48,6 +49,7 @@ This package contains files need to build applications using libmygpo-qt.
 
 %prep
 %setup -qn %name.%version
+%apply_patches
 
 %build
 %cmake -DMYGPO_BUILD_TESTS=OFF
@@ -63,9 +65,11 @@ rm -rf %{buildroot}
 %files -n %libname
 %defattr(-,root,root)
 %_libdir/libmygpo-qt.so.%{major}*
+%_libdir/libmygpo-qt.so.1
 
 %files devel
 %defattr(-,root,root)
 %_libdir/libmygpo-qt.so
 %_libdir/pkgconfig/*.pc
 %_includedir/mygpo-qt
+%_libdir/cmake/mygpo-qt
