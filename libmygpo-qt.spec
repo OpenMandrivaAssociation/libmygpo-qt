@@ -73,3 +73,18 @@ rm -rf %{buildroot}
 %_libdir/pkgconfig/*.pc
 %_includedir/mygpo-qt
 %_libdir/cmake/mygpo-qt
+
+
+%changelog
+* Fri Aug 17 2012 Crispin Boylan <crisb@mandriva.org> 1.0.5-1
++ Revision: 815202
+- New release
+
+* Mon May 02 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0.1-2
++ Revision: 662385
+- mass rebuild
+
+* Sun Mar 20 2011 Funda Wang <fwang@mandriva.org> 1.0.1-1
++ Revision: 647087
+- import libmygpo-qt
+
