@@ -1,12 +1,11 @@
 Summary:	Qt Library that wraps the gpodder.net Web API
 Name:		libmygpo-qt
-Version:	1.0.6
+Version:	1.0.7
 Release:	1
 License:	LGPLv3+
 Group:		Development/KDE and Qt
 Url:		http://wiki.gpodder.org/wiki/Libmygpo-qt
 Source0:	http://stefan.derkits.at/files/%{name}/%{name}.%{version}.tar.gz
-Patch0:		libmygpo-qt-1.0.5-fix-pkgconfig.patch
 BuildRequires:	cmake
 BuildRequires:	qt4-devel
 BuildRequires:	qjson-devel
