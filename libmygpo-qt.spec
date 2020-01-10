@@ -63,7 +63,7 @@ This package contains files need to build applications using libmygpo-qt.
 
 %prep
 %setup -qn %{name}.%{version}
-%apply_patches
+%autopatch -p1
 
 %build
 %cmake -DMYGPO_BUILD_TESTS=OFF
