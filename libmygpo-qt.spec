@@ -4,7 +4,7 @@ Version:	1.0.8
 Release:	6
 License:	LGPLv3+
 Group:		Development/KDE and Qt
-Url:		http://wiki.gpodder.org/wiki/Libmygpo-qt
+Url:		https://wiki.gpodder.org/wiki/Libmygpo-qt
 Source0:	http://stefan.derkits.at/files/libmygpo-qt/libmygpo-qt.1.0.8.tar.gz
 BuildRequires:	cmake
 BuildRequires:	qt4-devel
