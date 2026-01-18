@@ -1,3 +1,7 @@
+%define major 1.2
+%define libname %mklibname mygpo-qt6
+%define devname %mklibname -d mygpo-qt6
+
 Summary:	Qt Library that wraps the gpodder.net Web API
 Name:		libmygpo-qt
 Version:	1.2.0
@@ -24,10 +28,6 @@ v1.0 wraps nearly every Request from the gpodder.net API except:
    for a given Device" instead)
 
 #---------------------------------------------------------------------
-
-%define major 1.2
-%define libname %mklibname mygpo-qt6
-
 %package -n %{libname}
 Summary:	Library for %{name}
 Group:		Development/KDE and Qt
@@ -47,17 +47,18 @@ v1.0 wraps nearly every Request from the gpodder.net API except:
 
 #---------------------------------------------------------------------
 
-%package devel
+%package -n %{devname}
 Summary:	%{name} development files
 Group:		Development/KDE and Qt
-Requires:	%{libname} = %{version}
+Requires:	%{libname} = %{EVRD}
 
-%description devel
+%description -n %{devname}
 libmygpo-qt is a Qt Library that wraps the gpodder.net Web API.
 
 This package contains files need to build applications using libmygpo-qt.
 
-%files devel
+
+%files -n %{devname}
 %{_libdir}/libmygpo-qt6.so
 %{_libdir}/pkgconfig/libmygpo-qt6.pc
 %{_includedir}/mygpo-qt6/
