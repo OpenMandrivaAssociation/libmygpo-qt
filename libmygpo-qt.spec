@@ -71,6 +71,7 @@ This package contains files need to build applications using libmygpo-qt.
 %build
 %cmake \
          -DMYGPO_BUILD_TESTS=OFF \
+         -DBUILD_WITH_QT6:BOOL=TRUE \
          -DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
 %make_build
 
