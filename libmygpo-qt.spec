@@ -1,14 +1,22 @@
+%define major 1.2
+%define libname %mklibname mygpo-qt6
+%define devname %mklibname -d mygpo-qt6
+
 Summary:	Qt Library that wraps the gpodder.net Web API
 Name:		libmygpo-qt
-Version:	1.0.8
-Release:	6
+Version:	1.2.0
+Release:	1
 License:	LGPLv3+
 Group:		Development/KDE and Qt
 Url:		https://wiki.gpodder.org/wiki/Libmygpo-qt
-Source0:	http://stefan.derkits.at/files/libmygpo-qt/libmygpo-qt.1.0.8.tar.gz
+Source0:   https://github.com/gpodder/libmygpo-qt/archive/%{version}/%{name}-%{version}.tar.gz
+#Source0:	http://stefan.derkits.at/files/libmygpo-qt/libmygpo-qt.1.0.8.tar.gz
+BuildRequires: make
 BuildRequires:	cmake
-BuildRequires:	qt4-devel
-BuildRequires:	qjson-devel
+BuildRequires: cmake(Qt6Core)
+BuildRequires: cmake(Qt6Network)
+BuildRequires: cmake(Qt6Test)
+#BuildRequires:	qjson-devel
 
 %description
 libmygpo-qt is a Qt Library that wraps the gpodder.net Web API.
@@ -20,10 +28,6 @@ v1.0 wraps nearly every Request from the gpodder.net API except:
    for a given Device" instead)
 
 #---------------------------------------------------------------------
-
-%define major 1.0
-%define libname %mklibname mygpo-qt %{major}
-
 %package -n %{libname}
 Summary:	Library for %{name}
 Group:		Development/KDE and Qt
@@ -38,36 +42,39 @@ v1.0 wraps nearly every Request from the gpodder.net API except:
    for a given Device" instead)
 
 %files -n %{libname}
-%{_libdir}/libmygpo-qt.so.%{major}*
-%{_libdir}/libmygpo-qt.so.1
+%{_libdir}/libmygpo-qt6.so.%{major}*
+%{_libdir}/libmygpo-qt6.so.1
 
 #---------------------------------------------------------------------
 
-%package devel
+%package -n %{devname}
 Summary:	%{name} development files
 Group:		Development/KDE and Qt
-Requires:	%{libname} = %{version}
+Requires:	%{libname} = %{EVRD}
 
-%description devel
+%description -n %{devname}
 libmygpo-qt is a Qt Library that wraps the gpodder.net Web API.
 
 This package contains files need to build applications using libmygpo-qt.
 
-%files devel
-%{_libdir}/libmygpo-qt.so
-%{_libdir}/pkgconfig/*.pc
-%{_includedir}/mygpo-qt
-%{_libdir}/cmake/mygpo-qt
+
+%files -n %{devname}
+%{_libdir}/libmygpo-qt6.so
+%{_libdir}/pkgconfig/libmygpo-qt6.pc
+%{_includedir}/mygpo-qt6/
+%{_libdir}/cmake/mygpo-qt6/
 
 #---------------------------------------------------------------------
 
 %prep
-%setup -qn %{name}.%{version}
-%autopatch -p1
+%autosetup -n %{name}-%{version} -p1
 
 %build
-%cmake -DMYGPO_BUILD_TESTS=OFF
-%make
+%cmake \
+         -DMYGPO_BUILD_TESTS=OFF \
+         -DBUILD_WITH_QT6:BOOL=TRUE \
+         -DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
